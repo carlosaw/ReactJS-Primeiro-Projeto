@@ -1,16 +1,12 @@
-import { Card } from "@/components/Card";
-import { Circle } from "@/components/Circle";
-import { Person } from "@/components/Person";
-import { Square } from "@/components/Square";
+import { StudentTable } from "@/components/StudentTable";
+import { students } from "@/data/students";
 
 const Page = () => {
-  return (
-    <div className="flex flex-col">
-      <h1 className="font-bold text-2xl">Olá Mundo</h1>
-      <h3> Outro texto </h3>
 
-      <Card phrase="Alguma frase TOP" author="Coach de milhões" />
-        
+  return (
+    <div className="container mx-auto">
+      <h1 className="text-3xl mb-3">Lista de Estudantes</h1>
+      <StudentTable students={students} />       
     </div>
   );
 }

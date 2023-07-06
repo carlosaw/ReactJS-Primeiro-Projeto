@@ -1,5 +1,3 @@
-import { Person } from "./Person";
-
 export const Square = () => {
   return (
     <div className="
