@@ -5,11 +5,15 @@ const getWeekday = (today: Date) => {
 
 type Props = {
   name:string;
-  avatar: string;
+  avatar?: string;
   roles: string[];
 }
 
-export const Person = ({ name, avatar, roles }: Props) => {
+export const Person = ({
+  name,
+  avatar = 'https://png.pngtree.com/png-clipart/20210310/original/pngtree-mens-default-avatar-png-image_5944574.jpg',
+  roles
+}: Props) => {
   
   const today: Date = new Date();
 
