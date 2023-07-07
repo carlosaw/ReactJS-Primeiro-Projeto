@@ -1,5 +1,6 @@
 import { StudentTable } from "@/components/StudentTable";
 import { students } from "@/data/students";
+import {useState, useEffect} from 'react'
 
 const Page = () => {
 
