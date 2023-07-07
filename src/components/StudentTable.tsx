@@ -1,7 +1,7 @@
 import { Student } from "@/types/Student";
 
 type Props = {
-  students: Student[];
+  students: Student[]
 }
 
 export const StudentTable = ({ students }: Props) => {
@@ -27,12 +27,25 @@ export const StudentTable = ({ students }: Props) => {
               </div>
             </td>
             <td className="p-3">
-              {item.active && <div className="px-2 py-1 inline-block rounded-md border border-green-800 bg-green-600 text-white text-xs">Active</div>}
+              {item.active && 
+                <div className="px-2 py-1 inline-block rounded-md border border-green-800 bg-green-600 text-white text-xs">Active</div>}
               {!item.active && <div className="px-2 py-1 inline-block rounded-md border border-red-800 bg-red-600 text-white text-xs">Inactive</div>}
             </td>
-            <td className="p-3">{item.grade1.toFixed(1)}</td>
-            <td className="p-3">{item.grade2.toFixed(1)}</td>
-            <td className="p-3 font-bold">{item.active ? ((item.grade1 + item.grade2) / 2).toFixed(1) : '--'}</td>
+            <td className="p-3">{item.active ? item.grade1.toFixed(1) : 
+              <div className="text-red-800 font-bold">
+                {item.grade1.toFixed(1)}
+              </div>}
+            </td>
+            <td className="p-3">{item.active ? item.grade2.toFixed(1) : 
+              <div className="text-red-800 font-bold">
+                {item.grade1.toFixed(1)}
+              </div>}
+            </td>
+            <td className="p-3 font-bold">
+              {item.active ? ((item.grade1 + item.grade2) / 2).toFixed(1) : <div className="text-red-800">
+                --
+              </div>}
+            </td>
           </tr>
         ))};
       </tbody>

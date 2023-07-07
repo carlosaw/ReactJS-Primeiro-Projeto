@@ -1,13 +1,18 @@
-import { StudentTable } from "@/components/StudentTable";
-import { students } from "@/data/students";
-import {useState, useEffect} from 'react'
+"use client";
 
 const Page = () => {
 
+  let count = 0;
+
+  const handleClickButton = () => {
+    count++;
+    console.log(count);
+  }
+
   return (
-    <div className="container mx-auto">
-      <h1 className="text-3xl mb-3">Lista de Estudantes</h1>
-      <StudentTable students={students} />       
+    <div className="w-screen h-screen flex flex-col justify-center items-center mt-8">
+      <p>{count}</p>
+      <button onClick={handleClickButton} className="bg-blue-700 p-3">+1</button>
     </div>
   );
 }
