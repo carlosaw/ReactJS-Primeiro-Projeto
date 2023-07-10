@@ -1,56 +1,52 @@
 "use client";
 
-import { TodoItem } from "@/types/TodoItem";
+import { Modal } from "@/components/Modal";
+import { PhotoItem } from "@/components/PhotoItem";
+import { photoList } from "@/data/photoList";
 import { useState } from "react";
+
  
 const Page = () => {
-  
-  const [itemInput, setItemInput] = useState('');
 
-  const [list, setList] = useState<TodoItem[]>([
-    { label: 'Fazer dever de casa', checked: false},
-    { label: 'Comprar o bolo', checked: false},
-  ]);
+  const [showModal, setShowModal] = useState(false);
+  const [imageOfModal, setImageOfModal] = useState('');
 
-  const handleAddButton = () => {
-    if(itemInput.trim() === '') return;
-
-    setList([...list, { label: itemInput, checked: false }]);
-    setItemInput('');  
+  const openModal = (id: number) => {
+    const photo = photoList.find(item => item.id === id);
+    if(photo) {
+      setImageOfModal(photo.url);
+      setShowModal(true);
+    }
   }
 
-  const deleteItem = (index: number) => {
-    //alert('Deletando o item: ' + index);
-    setList(
-      list.filter((item, key) => key !== index)
-    );
+  const closeModal = () => {
+    setShowModal(false);
   }
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center mt-8">
-      <h1 className="text-4xl mt-5"> Lista de Tarefas </h1>  
+    <div className="mx-2">
+      <h1 className="text-center text-3xl font-bold my-10"> Fotos Intergalácticas </h1>  
 
-      <div className="flex w-full max-w-lg my-3 p-4 rounded-md bg-gray-500 border-2 border-gray-700">
-        <input
-          type="text"
-          placeholder="O que deseja fazer?"
-          className="flex-1 border border-black p-3 text-2xl text-black rounded-md mr-3"
-          value={itemInput}
-          onChange={e => setItemInput(e.target.value)}
+      <section className="container max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {photoList.map(item => (
+          <PhotoItem
+            key={item.id}
+            photo={item}
+            onClick={() => openModal(item.id)}
+          />
+        ))}
+      </section> 
+
+      {showModal &&
+        <Modal
+          image={imageOfModal}
+          closeModal={closeModal}
         />
-        <button onClick={handleAddButton}>Adicionar</button>
-      </div>
-
-      <p className="my-4">{list.length} Items na lista</p>
-
-      <ul className="w-full max-w-lg list-disc pl-5">
-        {list.map((item, index) => (
-          <li key={index}>{item.label} - <button onClick={() => deleteItem(index)} className="hover:underline ">[ deletar ]</button></li>
-        ))}        
-      </ul>    
+      }   
 
     </div>
   );
+    
 }
 
 export default Page;
