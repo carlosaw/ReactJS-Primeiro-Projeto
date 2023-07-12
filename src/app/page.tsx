@@ -28,6 +28,12 @@ const Page = () => {
     loadNextQuestion();
   }
 
+  const handleRestartButton = () => {
+    setAnswers([]);// Limpa as perguntas
+    setCurrentQuestion(0);// Pega a primeira pergunta novamente.
+    setShowResult(false);// Aparece as perguntas novamente.
+  }
+
   return (
     <div className="w-full h-screen flex justify-center items-center bg-blue-600">
       <div className="w-full max-w-xl rounded-md bg-white text-black shadow shadow-black ">
@@ -49,10 +55,10 @@ const Page = () => {
         </div>
         <div className="p-5 text-center border-t border-gray-300">
           {!showResult &&
-            `${currentQuestion + 1} de {questions.length} pergunta{questions.length === 1 ? '' : 's'}`
+            `${currentQuestion + 1} de ${questions.length} pergunta${questions.length === 1 ? '' : 's'}`
           }
           {showResult &&
-            <button className="px-3 py-2 rounded-md bg-blue-800 text-white">Reiniciar Quiz</button>
+            <button onClick={handleRestartButton} className="px-3 py-2 rounded-md bg-blue-800 text-white">Reiniciar Quiz</button>
           }
         </div>     
       </div>     

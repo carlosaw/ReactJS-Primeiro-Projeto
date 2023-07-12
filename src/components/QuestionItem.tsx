@@ -10,6 +10,7 @@ export const QuestionItem = ({question, count, onAnswer}: Props) => {
   
   // Função para verificar a questão.
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  
   const checkQuestion = (key: number) => {
     if(selectedAnswer === null) {
       setSelectedAnswer(key);// Verifica se acertou ou não.
@@ -17,8 +18,7 @@ export const QuestionItem = ({question, count, onAnswer}: Props) => {
       setTimeout(() => {
         onAnswer(key);// Dispara a função para mudar a pergunta.
         setSelectedAnswer(null);// Limpa a pergunta.
-      }, 2000);
-      
+      }, 2000);      
     }
   }
 
@@ -30,17 +30,11 @@ export const QuestionItem = ({question, count, onAnswer}: Props) => {
           <div
             key={key}
             onClick={() => checkQuestion(key)}
-            className={
-            `border px-3 py-2 rounded-md text-lg mb-4 cursor-pointer bg-blue-100 border-blue-300 cursor-pointer            
-              ${selectedAnswer !== null ? 'cursor-auto' : 'cursor-pointer hover:opacity-60'}
-              ${selectedAnswer !== null && selectedAnswer === question.answer && selectedAnswer === key && 'bg-green-100 border-green-300'}
-              ${selectedAnswer !== null && selectedAnswer !== question.answer && selectedAnswer === key && 'bg-red-100 border-red-300'}
             className={`border px-3 py-2 rounded-md text-lg mb-4 as'cursor-pointer' bg-blue-100 border-blue-300 as'cursor-pointer'
             
             ${selectedAnswer !== null ? 'cursor-auto' : 'cursor-pointer hover:opacity-60'}
             ${selectedAnswer !== null && selectedAnswer === question.answer && selectedAnswer === key && 'bg-green-100 border-green-300'}
             ${selectedAnswer !== null && selectedAnswer !== question.answer && selectedAnswer === key && 'bg-red-100 border-red-300'}
-
             `}
           >{item}</div>
         ))}

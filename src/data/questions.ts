@@ -19,6 +19,6 @@ export const questions: Question[] = [
       'Fogueira',
       'Lança-chamas',
     ],
-    answer: 1
+    answer: 3
   }
 ]
