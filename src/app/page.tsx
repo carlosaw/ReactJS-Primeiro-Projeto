@@ -1,70 +1,35 @@
 "use client";
 
-import { QuestionItem } from "@/components/QuestionItem";
-import { Results } from "@/components/Results";
-import { questions } from "@/data/questions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
- 
 const Page = () => {
-  const [answers, setAnswers] = useState<number[]>([]);
+  /*
+  1. Definição da FUNÇÃO que vai rodar.
+  2. Definição de QUANDO vai rodar.
+  3. Definição do que fazer quando o componente sumir/unload.
+  */
+  const [name, setName] = useState('Carlos');
+  const [age, setAge] = useState(90);
 
-  const [showResult, setShowResult] = useState(false);
+  useEffect(() => {
+    console.log('Rodou o Effect')
+  }, [name,age]);
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const title = "Quiz de Culinária";
-
-  // Substiu o currentQuestion
-  const loadNextQuestion = () => {
-    if(questions[currentQuestion + 1]) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      setShowResult(true);
-    }
-  }
-
-  const handleAnswered = (answer: number) => {
-    setAnswers([ ...answers, answer]);// Armazena a resposta.
-    loadNextQuestion();
-  }
-
-  const handleRestartButton = () => {
-    setAnswers([]);// Limpa as perguntas
-    setCurrentQuestion(0);// Pega a primeira pergunta novamente.
-    setShowResult(false);// Aparece as perguntas novamente.
-  }
+  // const handlePedroClick = () => {
+  //   setName('Pedro');
+  // }
 
   return (
     <div className="w-full h-screen flex justify-center items-center bg-blue-600">
-      <div className="w-full max-w-xl rounded-md bg-white text-black shadow shadow-black ">
-        <div className="p-5 font-bold text-2xl border-b border-gray-300" >{title}</div>
-        <div className="p-5">
-          {!showResult &&
-            <QuestionItem 
-              question={questions[currentQuestion]}
-              count={currentQuestion + 1}
-              onAnswer={handleAnswered}
-            />
-          }
-          {showResult &&
-            <Results
-              questions={questions} answers={answers}
-            />
-          }
-          
-        </div>
-        <div className="p-5 text-center border-t border-gray-300">
-          {!showResult &&
-            `${currentQuestion + 1} de ${questions.length} pergunta${questions.length === 1 ? '' : 's'}`
-          }
-          {showResult &&
-            <button onClick={handleRestartButton} className="px-3 py-2 rounded-md bg-blue-800 text-white">Reiniciar Quiz</button>
-          }
-        </div>     
-      </div>     
+      <p>Meu nome é: {name} e eu tenho {age} anos.</p>
+    <hr/>
+      <button className="border border-bg-400 m-3 p-3" onClick={()=>setName('Pedro')}>Mudar para Pedro</button>
+      <button className="border border-bg-400 m-3 p-3" onClick={()=>setName('João')}>Mudar para João</button>
+      <button className="border border-bg-400 m-3 p-3" onClick={()=>setAge(10)}>Mudar para 10 anos</button>
+      <button className="border border-bg-400 m-3 p-3" onClick={()=>setAge(90)}>Mudar para 90 anos</button>     
     </div>
-  );
-    
+  );    
 }
 
+<script src="http://localhost:3000"></script>
 export default Page;
