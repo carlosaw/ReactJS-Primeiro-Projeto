@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const Page = () => {
+  
   /*
   1. Definição da FUNÇÃO que vai rodar.
   2. Definição de QUANDO vai rodar.
@@ -10,17 +11,23 @@ const Page = () => {
   */
   const [name, setName] = useState('Carlos');
   const [age, setAge] = useState(90);
-
+  /*Monitora somente [name]*/
+  // useEffect(() => {
+  //   console.log('Rodou o Effect')
+  // }, [name]);
+  
+  /* Monitora todos*/
   useEffect(() => {
     console.log('Rodou o Effect')
-  }, [name,age]);
+  }, []);
 
   // const handlePedroClick = () => {
   //   setName('Pedro');
   // }
 
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-blue-600">
+    
+    <div className="w-full h-screen">      
       <p>Meu nome é: {name} e eu tenho {age} anos.</p>
     <hr/>
       <button className="border border-bg-400 m-3 p-3" onClick={()=>setName('Pedro')}>Mudar para Pedro</button>
