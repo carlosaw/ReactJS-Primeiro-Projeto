@@ -1,8 +1,6 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { CountProvider } from "./contexts/CountContext";
-import { LoggedUserProvider } from "./contexts/LoggedUser";
 import { Footer } from "@/components/Footer";
 import { PostProvider } from "./contexts/PostContext";
 import { PostList } from "@/components/PostList";
