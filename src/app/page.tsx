@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { PostProvider } from "./contexts/PostContext";
+import { PostProvider } from "../contexts/PostContext";
 import { PostList } from "@/components/PostList";
 
 const Page = () => {

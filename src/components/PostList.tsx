@@ -1,14 +1,10 @@
-import { PostContext } from "@/app/contexts/PostContext";
-import { useContext } from "react";
+import { usePosts } from "@/contexts/PostContext";// Usa o HOOK
 
 export const PostList = () => {
-  const postCtx = useContext(PostContext);
+  const postCtx = usePosts();
 
   const handleRemoveButton = (id: number) => {
-    postCtx?.dispatch({
-      type: 'remove',
-      payload: { id }
-    });
+    postCtx?.dispatch({ type: 'remove', payload: { id } });
   }
   
   return (
@@ -17,7 +13,7 @@ export const PostList = () => {
         <div key={item.id} className="p-3 border-b border-gray-500">
           <div className="text-xl font-bold mb-2">{item.title}</div>
           <div className="text-sm">{item.body}</div>
-          <button onClick={() => handleRemoveButton(item.id)}>Remover</button>
+          <button onClick={() => handleRemoveButton(item.id)}>[ excluir ]</button>
         </div>
       ))}
     </div>

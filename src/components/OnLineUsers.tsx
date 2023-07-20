@@ -1,4 +1,4 @@
-import { CountContext } from "@/app/contexts/CountContext";
+import { CountContext } from "@/contexts/CountContext";
 import { useContext } from "react";
 
 export const OnLineUsers = () => {

@@ -1,8 +1,8 @@
-import { PostContext } from "@/app/contexts/PostContext";
-import { useContext, useState } from "react";
+import { usePosts } from "@/contexts/PostContext";
+import { useState } from "react";
 
 export const Header = () => {
-  const postCtx = useContext(PostContext);
+  const postCtx = usePosts();
 
   const [titleInput, setTitleInput] = useState('');
   const [bodyInput, setBodyInput] = useState('');
@@ -22,7 +22,7 @@ export const Header = () => {
     <header className="container mx-auto flex justify-center flex-col items-center">
       <h1 className="text-3xl mt-4 mb-4">Título da página</h1>
 
-      <div className="max-w-xl flex flex-col gap-3 border border-dotted border-gray-400 p-4">
+      <div className="w-96 bg-gray-800 flex flex-col gap-3 border border-dotted border-gray-400 p-4">
         <input 
           type="text"
           placeholder="Digite um título"
