@@ -17,7 +17,7 @@ export const Container = ({ children }: Props) => {
       `}
     >
       <div className="p-20">
-        TEMA: {themeCtx?.theme}
+        {/* TEMA: {themeCtx?.theme} */}
         {children}
       </div>      
     </div>
